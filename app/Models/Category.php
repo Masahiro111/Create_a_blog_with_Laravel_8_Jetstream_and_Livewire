@@ -12,20 +12,10 @@ class Category extends Model
 
     protected $table = 'categories';
 
-    protected $fillable = [
-        'name',
-        'slug',
-        'parent_id',
-    ];
+    protected $fillable = ['name', 'slug'];
 
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
-    }
-
-    public function subCategories(): HasMany
-    {
-        return $this->hasMany(Category::class, 'parent_id')
-            ->with('categories');
     }
 }
