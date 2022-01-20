@@ -13,7 +13,27 @@ class Post extends Model
 
     protected $table = 'posts';
 
-    protected $fillable = ['id', 'title', 'body'];
+    protected $fillable = [
+        'cover_image',
+        'title',
+        'slug',
+        'body',
+        'meta_description',
+        'published_at',
+        'featured',
+        'user_id',
+        'category_id',
+    ];
+
+    public function id(): int
+    {
+        return $this->id;
+    }
+
+    public function title(): string
+    {
+        return $this->title;
+    }
 
     public function user(): BelongsTo
     {
