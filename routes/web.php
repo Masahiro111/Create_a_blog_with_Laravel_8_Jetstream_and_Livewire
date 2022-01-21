@@ -32,14 +32,27 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // Route::put('blog/{blog}', [BlogController::class, 'update'])->name('blog.update');
 // Route::delete('blog/{blog}', [BlogController::class, 'destroy'])->name('blog.destroy');
 
+// Route::prefix('blog')
+//     ->as('blog.')
+//     ->group(function () {
+//         Route::get('', [BlogController::class, 'index'])->name('index');
+//         Route::get('create', [BlogController::class, 'create'])->name('create');
+//         Route::post('', [BlogController::class, 'store'])->name('store');
+//         Route::get('{blog}', [BlogController::class, 'show'])->name('show');
+//         Route::get('{blog}/edit', [BlogController::class, 'edit'])->name('edit');
+//         Route::put('{blog}', [BlogController::class, 'update'])->name('update');
+//         Route::delete('{blog}', [BlogController::class, 'destroy'])->name('destroy');
+//     });
+
 Route::prefix('blog')
+    ->controller(BlogController::class)
     ->as('blog.')
     ->group(function () {
-        Route::get('/', [BlogController::class, 'index'])->name('index');
-        Route::get('/create', [BlogController::class, 'create'])->name('create');
-        Route::post('/', [BlogController::class, 'store'])->name('store');
-        Route::get('/{blog}', [BlogController::class, 'show'])->name('show');
-        Route::get('/{blog}/edit', [BlogController::class, 'edit'])->name('edit');
-        Route::put('/{blog}', [BlogController::class, 'update'])->name('update');
-        Route::delete('/{blog}', [BlogController::class, 'destroy'])->name('destroy');
+        Route::get('', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('', 'store')->name('store');
+        Route::get('{blog}', 'show')->name('show');
+        Route::get('{blog}/edit', 'edit')->name('edit');
+        Route::put('{blog}', 'update')->name('update');
+        Route::delete('{blog}', 'destroy')->name('destroy');
     });
